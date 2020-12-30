@@ -1,0 +1,31 @@
+{
+  "name": "mega-lorem-ipsum",
+  "main": "index.js",
+  "author": "Jana Pozelaite",
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.3",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.29.5",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14",
+    "webpack-node-externals": "^2.5.2"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --mode=development --config webpack.config.js && json-server --watch db.json",
+    "build": "webpack --mode=production -p --config webpack.config.js"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.2.5",
+    "body-parser": "^1.19.0",
+    "css-loader": "^2.1.0",
+    "lodash": "^4.17.20",
+    "lodash-id": "^0.14.0",
+    "lowdb": "^1.0.0",
+    "style-loader": "^0.23.1",
+    "sync-request": "^6.1.0"
+  }
+}
