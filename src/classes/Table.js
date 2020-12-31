@@ -1,5 +1,6 @@
 import {getData, getOne, postData, deleteData, updateData} from 'api';
 import { Overlay } from './Overlay.js';
+import { Button } from './Button.js';
 
 export class Table {
     constructor () {
@@ -16,8 +17,7 @@ export class Table {
     createTable () {
         const containerDiv = document.createElement('div');
         const innerContainerDiv = document.createElement('div');
-        const addItemButton = document.createElement('button');
-        const addItemButtonText = document.createTextNode('Add Item');
+        const addItemButton = new Button("addItem", "Add Item").renderButton();
         const table = document.createElement("table");
         const thead = table.createTHead();
         const tbody = table.createTBody();
@@ -35,12 +35,9 @@ export class Table {
         
         containerDiv.className = 'container';
         innerContainerDiv.className = "inner-container";
-        addItemButton.id = "addItem";
         addItemButton.onclick = this.addItem;
         table.className = "table";
         tableHeaderRow.className = "table-header";
-
-        addItemButton.appendChild(addItemButtonText);
         innerContainerDiv.appendChild(addItemButton);
         table.appendChild(thead);
         table.appendChild(tbody);
@@ -65,21 +62,17 @@ export class Table {
         let actionCell = row.insertCell();
         actionCell.setAttribute("class", "table-data");
         actionCell.id ="actionCell";
-        let editButton = document.createElement('button');
-        let deleteButton = document.createElement('button');
-        deleteButton.setAttribute("class", "delete-btn");
-        editButton.setAttribute("class", "edit-btn");
+        let editButton =  new Button(record.id, null, "edit-btn").renderButton();
+        let deleteButton =  new Button(record.id, null, "delete-btn").renderButton();
         deleteButton.onclick = this.deleteItem;
         editButton.onclick = this.editItem;
         let editImg = document.createElement('img');
         editImg.setAttribute("src", "images/edit.png");
         editImg.setAttribute("class", "action-img");
-        editButton.id = record.id;
         editImg.id = record.id;
         let deleteImg = document.createElement('img');
         deleteImg.setAttribute("src", "images/delete.png");
         deleteImg.setAttribute("class", "action-img");
-        deleteButton.id = record.id;
         deleteImg.id = record.id;
         editButton.appendChild(editImg);
         deleteButton.appendChild(deleteImg);

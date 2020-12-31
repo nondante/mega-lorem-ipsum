@@ -1,4 +1,5 @@
-import { Confirmation } from './Confirmation';
+import { Confirmation } from './Confirmation.js';
+import { Button } from './Button.js';
 
 export class Overlay {
     constructor (type) {
@@ -85,15 +86,11 @@ export class Overlay {
     }
 
     renderSubmitButton (type, form) {
-      let button = document.createElement('button');
-      let addText = document.createTextNode("Add");
-      let updateText = document.createTextNode("Update");
+      let button;
       if(type === "add") {
-        button.id = "postNewItem";
-        button.append(addText)
+        button = new Button("postNewItem", "Add").renderButton();
       } else if (type === "update") {
-        button.id = "updateItem";
-        button.append(updateText);
+        button = new Button("updateItem", "Update").renderButton();
       }
       form.append(button);
     }
@@ -151,9 +148,7 @@ export class Overlay {
     createOverlay () {
       const overlay = document.createElement('div');
       const popup = document.createElement('div');
-      const closeButton = document.createElement('button');
-      closeButton.textContent = "X"
-      closeButton.id = "closeButton";
+      const closeButton = new Button("closeButton", "X").renderButton();
       overlay.id = "overlay";
       overlay.onclick = this.closeOverlay;
       overlay.tabIndex = "-1";

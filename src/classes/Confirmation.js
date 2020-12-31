@@ -1,3 +1,5 @@
+import { Button } from './Button.js';
+
 export class Confirmation {
     constructor (type) {
         this.type = type;
@@ -27,16 +29,10 @@ export class Confirmation {
         const messageContainer = document.createElement("span");
         const messageText = document.createTextNode(this.getMessageText());
         const buttonGroup = document.createElement('div');
-        const agreeButton = document.createElement('button');
-        const agreeButtonText = document.createTextNode("Yes");
-        const cancelButtonText = document.createTextNode("Cancel");
-        const cancelButton = document.createElement('button');
+        const agreeButton = new Button("yes", "Yes").renderButton();
+        const cancelButton = new Button("cancel", "Cancel").renderButton();
         deleteMessage.id = "deleteMessage";
         messageContainer.appendChild(messageText);
-        agreeButton.id = "yes";
-        cancelButton.id = "cancel";
-        agreeButton.appendChild(agreeButtonText);
-        cancelButton.appendChild(cancelButtonText);
         buttonGroup.appendChild(agreeButton);
         buttonGroup.appendChild(cancelButton);
         buttonGroup.className = "button-group";
